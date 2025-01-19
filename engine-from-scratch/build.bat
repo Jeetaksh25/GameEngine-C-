@@ -1,12 +1,20 @@
-@echo off
+@echo off 
 
 :: Set up the Visual Studio build environment
 call "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
 
 :: Define paths to source files
 set render=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\render\render.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\render\render_init.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\render\render_util.c
+
 set io=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\io\io.c
-set files=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\glad.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\main.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\global.c %render% %io%
+set files=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\glad.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\main.c D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\global.c %render% %io% %config% %input% %time%
+
+set config=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\config\config.c
+
+set input=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\input\input.c
+
+set time=D:\College\SEM-2\CSE101\Programs\Game1\engine-from-scratch\src\engine\time\time.c
+
 
 :: Define paths to libraries
 set libs=D:\College\SEM-2\CSE101\Programs\Game1\lib\SDL2main.lib D:\College\SEM-2\CSE101\Programs\Game1\lib\SDL2.lib D:\College\SEM-2\CSE101\Programs\Game1\lib\freetype.lib

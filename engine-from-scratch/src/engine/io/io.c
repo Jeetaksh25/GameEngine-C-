@@ -14,7 +14,7 @@ File to_file_read(const char *path) {
     File file = {.is_valid = false};
 
     FILE *fp = fopen(path, "rb");
-    if (!fp) {
+    if (!fp || ferror(fp)) {
         ERROR_RETURN(file, IO_READ_ERROR_GENERAL, path, errno);
     }
 
@@ -73,10 +73,16 @@ File to_file_read(const char *path) {
 
 int to_file_write(void *buffer, size_t size, const char *path) {
     FILE *fp = fopen(path, "wb");
-    if (!fp) {
+    if (!fp || ferror(fp)) {
+        ERROR_RETURN(1, "Cannot write file: %s. errno: %d\n", path, errno);
         return -1;
     }
     size_t written = fwrite(buffer, 1, size, fp);
     fclose(fp);
-    return (written == size) ? 0 : -1;
+
+    if (written != 1){
+        ERROR_RETURN(1, "Write error. "
+        "Expected 1 chunk, got %zu\n", written);
+    }
+    return 0;
 }
