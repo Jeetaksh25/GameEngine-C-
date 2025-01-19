@@ -1,0 +1,1 @@
+del .\*.lik .\.*obj .\*.pdb .\*.exe
